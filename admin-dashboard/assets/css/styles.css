@@ -1,0 +1,107 @@
+/* ==========================
+   Shared base styles
+   (moved here so all pages reuse the same sidebar / topbar / nav styles)
+   ========================== */
+
+/* Basic Reset & typography */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Default UI font - pages may override with page-specific fonts if needed */
+body, html { font-family: "Poppins", sans-serif; }
+
+/* Links: remove underline across the app and inherit color */
+a { text-decoration: none; color: inherit; }
+
+/* Page-level layout */
+.container { display: flex; width: 100%; min-height: 100vh; }
+
+/* Sidebar (shared) */
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.brand { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+.brand img { width: 36px; height: 36px; border-radius: 50%; }
+.brand-text h2 { color: #1f2937; font-size: 1.05rem; line-height: 1.2; }
+.brand-text span { color: #9ca3af; font-size: 0.85rem; }
+
+.sidebar ul { list-style: none; padding: 0; margin: 0; }
+.menu li { margin-bottom: 8px; }
+.menu li a { display: flex; align-items: center; gap: 12px; color: #374151; padding: 12px; border-radius: 10px; cursor: pointer; transition: background .18s ease, color .18s ease; }
+.menu li a .icon { color: #111827; opacity: .85; display: inline-flex; font-size: 20px; line-height: 1; }
+.menu li.active a, .menu li a.active { background: #e5edff; color: #1f48ff; }
+.menu li a:hover { background: #f3f4f6; }
+.menu li.active a .icon, .menu li a.active .icon { color: #1f48ff; }
+
+.bottom { margin-top: auto; display: flex; flex-direction: column; gap: 10px; }
+.settings-btn, .logout-btn { display: flex; align-items: center; gap: 10px; background: transparent; color: #374151; padding: 10px 12px; border-radius: 10px; cursor: pointer; text-decoration: none; transition: background .18s ease; }
+.settings-btn .icon, .logout-btn .icon { font-size: 20px; }
+.settings-btn:hover, .settings-btn.active, .logout-btn:hover { background: #f3f4f6; }
+.settings-btn.active { background: #e5edff; color: #1f48ff; }
+.settings-btn.active .icon { color: #1f48ff; }
+.logout-btn { color: #ef4444; }
+
+/* Topbar (shared) */
+.topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+.topbar h1 { font-size: 1.4rem; color: #111827; }
+.profile { display: flex; align-items: center; gap: 10px; }
+.profile img { width: 35px; height: 35px; border-radius: 50%; }
+
+/* Make chart canvases responsive by default */
+.chart-card canvas { width: 100% !important; height: auto !important; }
+
+/* Responsive helpers (kept here) */
+/* Fluid base sizing to better handle browser zoom (80%-125%) */
+html { font-size: clamp(14px, 0.95vw + 9px, 16px); }
+
+/* Constrain very wide screens and keep content centered for main content blocks */
+.main-content { max-width: 1200px; margin-left: auto; margin-right: auto; }
+
+@media (min-width: 1024px) {
+  .stats { grid-template-columns: repeat(4, 1fr) !important; }
+  .charts { grid-template-columns: 2fr 1fr !important; }
+  .topbar h1 { font-size: clamp(22px, 2.6vw, 32px); }
+  .stats { gap: 16px; margin-bottom: 16px; }
+  .card { padding: 16px; }
+  .chart-card { padding: 16px; }
+  .charts { gap: 16px; }
+  .chart-card canvas { height: clamp(220px, 28vh, 320px) !important; }
+  .donut .donut-wrap { max-width: clamp(260px, 28vh, 360px); }
+}
+
+@media (max-width: 1440px) and (min-width: 1200px) {
+  .main-content { max-width: 1180px; }
+  .card { padding: 16px; }
+  .charts { gap: 16px; }
+}
+
+@media (max-width: 1366px) {
+  .sidebar { width: 220px; }
+  .main-content { padding: 18px 24px; }
+  .charts { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 1024px) {
+  .charts { grid-template-columns: 1fr; }
+  .donut .donut-wrap { max-width: 420px; }
+}
+
+@media (max-width: 900px) {
+  .sidebar { width: 200px; }
+  .menu li { padding: 10px 10px; }
+  .stats { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
+}
+
+
+
