@@ -4,7 +4,11 @@
 .main-content {
   /* dashboard prefers slightly different padding; keep page-specific override here */
   flex: 1;
-  padding: 20px 30px;
+  /* Ensure top padding accounts for the fixed topbar so content is not hidden */
+  padding-top: calc(var(--topbar-height) + clamp(12px, 2vw, 20px));
+  padding-right: clamp(24px, 3vw, 40px);
+  padding-bottom: clamp(20px, 2vw, 30px);
+  padding-left: clamp(24px, 3vw, 40px);
   overflow-y: auto;
 }
   
@@ -12,30 +16,40 @@
   .stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
+    gap: clamp(16px, 1.5vw, 24px);
+    margin-bottom: clamp(24px, 3vh, 40px);
   }
   
   .card {
     background: #fff;
     border-radius: 12px;
-    padding: 20px;
+    padding: clamp(16px, 1.5vw, 24px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    position: relative;
+  }
+  
+  .card-icon {
+    position: absolute;
+    top: clamp(16px, 1.5vw, 24px);
+    right: clamp(16px, 1.5vw, 24px);
+    font-size: clamp(20px, 2vw, 28px);
+    color: #fbbf24;
+    opacity: 0.9;
   }
   
   .card h3 {
-    font-size: 1rem;
+    font-size: clamp(0.9rem, 1vw, 1.1rem);
     color: #6b7280;
-    margin-bottom: 10px;
+    margin-bottom: clamp(8px, 1vh, 12px);
   }
   
   .card .value {
-    font-size: 1.6rem;
+    font-size: clamp(1.4rem, 2vw, 2rem);
     font-weight: 600;
   }
   
   .growth {
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 0.9vw, 1rem);
   }
   
   .growth.positive {
@@ -46,40 +60,61 @@
     color: #ef4444;
   }
   
+  .chart-subtitle {
+    font-size: clamp(0.8rem, 0.85vw, 0.95rem);
+    color: #9ca3af;
+    margin-top: clamp(4px, 0.5vh, 8px);
+    margin-bottom: 0;
+  }
+  
+  .chart-card h3 {
+    font-size: clamp(1rem, 1.2vw, 1.3rem);
+  }
+  
   /* Charts Section */
   .charts {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    gap: 20px;
+    gap: clamp(16px, 1.5vw, 24px);
   }
   
   .chart-card {
     background: #fff;
-    padding: 20px;
+    padding: clamp(16px, 1.5vw, 24px);
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     position: relative;
+    display: flex;
+    flex-direction: column;
   }
   
   .card-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: clamp(16px, 1.5vw, 24px);
   }
   
   .link {
     color: #2563eb;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 0.9vw, 1rem);
+  }
+  
+  .chart-card canvas {
+    height: clamp(250px, 30vh, 400px) !important;
+  }
+  
+  .donut canvas {
+    height: clamp(230px, 28vh, 380px) !important;
   }
   
   /* Donut styles */
   .donut .donut-wrap {
     position: relative;
     width: 100%;
-    max-width: 360px;
-    margin: 10px auto 0;
+    max-width: clamp(280px, 30vh, 480px);
+    margin: clamp(8px, 1vh, 16px) auto 0;
   }
   
   .donut .donut-center {
@@ -92,18 +127,18 @@
   }
   
   .donut .donut-center strong {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 1.8vw, 1.8rem);
     display: block;
   }
   
   .legend {
     display: flex;
-    gap: 10px;
+    gap: clamp(8px, 1vw, 12px);
     align-items: center;
     justify-content: center;
-    margin-top: 12px;
+    margin-top: clamp(10px, 1.2vh, 16px);
     color: #6b7280;
-    font-size: 0.9rem;
+    font-size: clamp(0.85rem, 0.9vw, 1rem);
   }
   
   .legend .dot {
@@ -116,4 +151,23 @@
   
   .legend .dot.present { background: #2563eb; }
   .legend .dot.absent { background: #e5e7eb; }
+
+/* Mobile: show stats as 2 columns (2x2 grid) for better use of horizontal space */
+@media (max-width: 768px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .card {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .card-icon {
+    top: 12px;
+    right: 12px;
+    font-size: 20px;
+  }
+}
   

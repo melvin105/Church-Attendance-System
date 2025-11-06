@@ -16,16 +16,7 @@ body {
   min-height: 100vh;
 }
 
-/* Sidebar */
-.sidebar {
-  background: #ffffff;
-  width: 240px;
-  border-right: 1px solid #e2e8f0;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+/* Sidebar styles moved to shared styles.css */
 
 .sidebar-title {
   font-weight: 600;
@@ -85,7 +76,11 @@ body {
 /* Main */
 .main-content {
   flex: 1;
-  padding: 30px 40px;
+  /* account for fixed topbar */
+  padding-top: calc(var(--topbar-height) + 30px);
+  padding-right: 40px;
+  padding-bottom: 30px;
+  padding-left: 40px;
 }
 
 /* Header */
@@ -244,21 +239,16 @@ body {
 
 /* Responsive */
 @media (max-width: 900px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    justify-content: space-between;
-  }
+  /* Container and sidebar styles handled by shared styles.css */
 
   .filters {
     flex-direction: column;
   }
 
   .main-content {
-    padding: 20px;
+    padding-top: calc(var(--topbar-height) + 20px);
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
   }
 }

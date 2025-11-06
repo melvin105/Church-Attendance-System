@@ -3,7 +3,11 @@
 /* Main Content */
 .main-content {
   flex: 1;
-  padding: 40px;
+  /* account for fixed topbar */
+  padding-top: calc(var(--topbar-height) + 40px);
+  padding-right: 40px;
+  padding-bottom: 40px;
+  padding-left: 40px;
 }
 
 .main-content h1 {

@@ -3,7 +3,11 @@
 /* Settings page main content spacing (page-specific override) */
 .main-content {
   flex: 1;
-  padding: 25px 40px;
+  /* account for fixed topbar */
+  padding-top: calc(var(--topbar-height) + 25px);
+  padding-right: 40px;
+  padding-bottom: 25px;
+  padding-left: 40px;
 }
 
 /* Settings Section */
@@ -129,19 +133,11 @@
 
 /* Responsive Design */
 @media (max-width: 900px) {
-  .container {
-    flex-direction: column;
-  }
-
-  .sidebar {
-    width: 100%;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
-
   .main-content {
-    padding: 15px;
+    padding-top: calc(var(--topbar-height) + 15px);
+    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-left: 15px;
   }
 
   .table-header {

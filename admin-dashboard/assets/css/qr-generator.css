@@ -3,7 +3,11 @@
 /* Main Content */
 .main-content {
   flex: 1;
-  padding: 40px;
+  /* account for fixed topbar */
+  padding-top: calc(var(--topbar-height) + 40px);
+  padding-right: 40px;
+  padding-bottom: 40px;
+  padding-left: 40px;
 }
 
 .header {
@@ -191,11 +195,10 @@ td i {
     width: 100%;
   }
 
-  .sidebar {
-    display: none;
-  }
-
   .main-content {
-    padding: 20px;
+    padding-top: calc(var(--topbar-height) + 20px);
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
   }
 }

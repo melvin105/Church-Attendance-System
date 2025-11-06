@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeCharts();
     setupEventListeners();
     loadMockData();
+    // populate initial quick stats
+    updateQuickStats();
 });
 
 // Setup event listeners
@@ -27,141 +29,73 @@ function setupEventListeners() {
 
 // Initialize all charts
 function initializeCharts() {
-    // Attendance Trends Chart
-    const attendanceTrendCtx = document.getElementById('attendanceTrendChart').getContext('2d');
-    new Chart(attendanceTrendCtx, {
+    // Use the canvas IDs present in reports.html and fill with dummy data
+    // Weekly Attendance (line)
+    const attendanceCtx = document.getElementById('attendanceChart').getContext('2d');
+    new Chart(attendanceCtx, {
         type: 'line',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6'],
             datasets: [{
                 label: 'Attendance',
-                data: [120, 135, 140, 138, 142, 150],
+                data: [520, 630, 590, 680, 540, 610],
                 borderColor: '#2563eb',
-                backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                tension: 0.4,
+                backgroundColor: 'rgba(37,99,235,0.12)',
+                tension: 0.3,
                 fill: true
             }]
         },
         options: {
             responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                title: {
-                    display: false
-                }
-            },
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
             scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.05)'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
+                y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' } },
+                x: { grid: { display: false } }
             }
         }
     });
 
-    // Age Distribution Chart
-    const ageDistributionCtx = document.getElementById('ageDistributionChart').getContext('2d');
-    new Chart(ageDistributionCtx, {
+    // Department distribution (doughnut)
+    const deptCtx = document.getElementById('departmentChart').getContext('2d');
+    new Chart(deptCtx, {
         type: 'doughnut',
         data: {
-            labels: ['0-18', '19-30', '31-50', '51+'],
-            datasets: [{
-                data: [25, 30, 35, 10],
-                backgroundColor: [
-                    '#3b82f6',
-                    '#60a5fa',
-                    '#93c5fd',
-                    '#bfdbfe'
-                ],
-                borderWidth: 0
-            }]
+            labels: ['Worship', 'Youth', 'Choir', 'Ushering'],
+            datasets: [{ data: [35, 25, 20, 20], backgroundColor: ['#2563eb','#60a5fa','#93c5fd','#bfdbfe'] }]
         },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
-                    labels: {
-                        usePointStyle: true,
-                        padding: 20
-                    }
-                }
-            }
-        }
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
     });
 
-    // Gender Distribution Chart
-    const genderDistributionCtx = document.getElementById('genderDistributionChart').getContext('2d');
-    new Chart(genderDistributionCtx, {
-        type: 'pie',
-        data: {
-            labels: ['Male', 'Female'],
-            datasets: [{
-                data: [45, 55],
-                backgroundColor: [
-                    '#2563eb',
-                    '#60a5fa'
-                ],
-                borderWidth: 0
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    position: 'right',
-                    labels: {
-                        usePointStyle: true,
-                        padding: 20
-                    }
-                }
-            }
-        }
-    });
-
-    // Weekly Attendance Pattern
-    const weeklyPatternCtx = document.getElementById('weeklyPatternChart').getContext('2d');
-    new Chart(weeklyPatternCtx, {
+    // Attendance by Event Type (bar) - replace age demographics with this more actionable chart
+    const eventTypeCtx = document.getElementById('eventTypeChart').getContext('2d');
+    new Chart(eventTypeCtx, {
         type: 'bar',
         data: {
-            labels: ['Sunday', 'Wednesday', 'Friday'],
+            labels: ['Sunday', 'Wednesday', 'Friday', 'Special'],
             datasets: [{
                 label: 'Average Attendance',
-                data: [150, 85, 95],
-                backgroundColor: '#2563eb',
-                borderRadius: 8
+                data: [680, 320, 180, 120],
+                backgroundColor: ['#2563eb', '#60a5fa', '#93c5fd', '#bfdbfe']
             }]
         },
         options: {
             responsive: true,
-            plugins: {
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.05)'
-                    }
-                },
-                x: {
-                    grid: {
-                        display: false
-                    }
-                }
-            }
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true, grid: { color: 'rgba(0,0,0,0.04)' } }, x: { grid: { display: false } } }
         }
+    });
+
+    // Growth metrics (small area/line)
+    const growthCtx = document.getElementById('growthChart').getContext('2d');
+    new Chart(growthCtx, {
+        type: 'line',
+        data: {
+            labels: ['Jan','Feb','Mar','Apr','May','Jun'],
+            datasets: [{ label: 'Growth %', data: [1.2, 1.4, 1.3, 1.6, 1.5, 1.8], borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.08)', fill: true, tension: 0.3 }]
+        },
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } }
     });
 }
 

@@ -10,11 +10,19 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+  <!-- Mobile Menu Toggle -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <span class="material-symbols-rounded">menu</span>
+  </button>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
   <div class="container">
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="brand">
-        <img src="assets/images/profile.png" alt="Admin" />
+        <span class="material-symbols-rounded church-icon-sidebar">church</span>
         <div class="brand-text">
           <h2>Church Admin</h2>
           <span>Welcome Back</span>
@@ -67,10 +75,17 @@
     <!-- Main content -->
     <main class="main-content">
       <header class="topbar">
-        <h1>Reports</h1>
+        <h1 class="topbar-title">Reports</h1>
         <div class="profile">
-          <img src="assets/images/profile.png" alt="Admin" />
-          <span>John Doe</span>
+          <div class="notification-icon">
+            <span class="material-symbols-rounded">notifications</span>
+            <span class="notification-dot"></span>
+          </div>
+          <img src="assets/images/profile.jpg" alt="Admin" />
+          <div class="profile-info">
+            <span class="profile-name">John Doe</span>
+            <span class="profile-role">Admin</span>
+          </div>
         </div>
       </header>
 
@@ -104,7 +119,7 @@
 
       <!-- Quick Stats -->
       <section class="quick-stats">
-        <div class="stat-card">
+        <div class="stat-card" data-stat="total-attendance">
           <div class="stat-icon">
             <span class="material-symbols-rounded">people</span>
           </div>
@@ -114,7 +129,7 @@
             <span class="trend positive">+15% vs last month</span>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-stat="avg-attendance">
           <div class="stat-icon">
             <span class="material-symbols-rounded">calendar_month</span>
           </div>
@@ -124,7 +139,7 @@
             <span class="trend positive">+5.2% vs last month</span>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-stat="new-members">
           <div class="stat-icon">
             <span class="material-symbols-rounded">new_releases</span>
           </div>
@@ -134,7 +149,7 @@
             <span class="trend positive">+12 this month</span>
           </div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card" data-stat="growth-rate">
           <div class="stat-icon">
             <span class="material-symbols-rounded">trending_up</span>
           </div>
@@ -177,8 +192,8 @@
             <canvas id="departmentChart"></canvas>
           </div>
           <div class="chart-card">
-            <h3>Age Demographics</h3>
-            <canvas id="demographicsChart"></canvas>
+            <h3>Attendance by Event Type</h3>
+              <canvas id="eventTypeChart"></canvas>
           </div>
           <div class="chart-card">
             <h3>Growth Metrics</h3>
@@ -224,6 +239,7 @@
     </main>
   </div>
 
+  <script src="assets/js/main.js"></script>
   <script src="assets/js/reports.js"></script>
 </body>
 </html>

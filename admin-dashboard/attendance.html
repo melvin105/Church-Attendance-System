@@ -9,11 +9,19 @@
   <link rel="stylesheet" href="assets/css/attendance.css" />
 </head>
 <body>
+  <!-- Mobile Menu Toggle -->
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+    <span class="material-symbols-rounded">menu</span>
+  </button>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
   <div class="container">
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="brand">
-        <img src="assets/images/profile.png" alt="Admin" />
+        <span class="material-symbols-rounded church-icon-sidebar">church</span>
         <div class="brand-text">
           <h2>Church Admin</h2>
           <span>Welcome Back</span>
@@ -66,10 +74,17 @@
     <!-- Main Content -->
     <main class="main-content">
       <header class="topbar">
-        <h1>Attendance</h1>
+        <h1 class="topbar-title">Attendance</h1>
         <div class="profile">
-          <img src="assets/images/profile.png" alt="Admin" />
-          <span>John Doe</span>
+          <div class="notification-icon">
+            <span class="material-symbols-rounded">notifications</span>
+            <span class="notification-dot"></span>
+          </div>
+          <img src="assets/images/profile.jpg" alt="Admin" />
+          <div class="profile-info">
+            <span class="profile-name">John Doe</span>
+            <span class="profile-role">Admin</span>
+          </div>
         </div>
       </header>
 
@@ -174,6 +189,7 @@
     </main>
   </div>
 
-  <script src="attendance.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/attendance.js"></script>
 </body>
 </html>
